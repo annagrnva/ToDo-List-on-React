@@ -2,16 +2,16 @@ import { useState } from 'react'
 import './App.css'
 
 export default function App() {
-  const [task, setTask] = useState(['1', '2', '3'])
+  const [task, setTask] = useState([])
   const [newTask, setNewTask] = useState("")
 
   function onChangeInput(event) {
     setNewTask(event.target.value)
   }
-  console.log(onChangeInput)
 
   function addTask() {
-    setTask(...task, newTask)
+
+    setTask([task, newTask])
     setNewTask("")
   }
 
