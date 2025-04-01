@@ -10,32 +10,37 @@ export default function App() {
   }
 
   function addTask() {
-
-    setTask([task, newTask])
+    newTask.slice()
+    setTask([...task, newTask])
     setNewTask("")
+  }
+
+  function deleteTask(index) {
+    setTask.remove(index)
   }
 
   return (
     <>
-      <h1>To-Do List</h1>
-
       <div>
-        <input type="text"
+        <h1>To-Do List</h1>
+
+        <input
+          type="text"
           placeholder='Enter the text'
-          value={newTask} 
-          onChange={onChangeInput}/>
-    
+          value={newTask}
+          onChange={onChangeInput}
+        />
+
         <button onClick={addTask}>Add</button>
+
       </div>
 
       <div>
         {task.map((todo, index) => (
-          <p> {task}
-            key={index}
-            todo={todo}
-
-            {/* <button onClick={deleteTask}>Delete</button> */}
-          </p>
+          <div key={index}>
+            <p> {todo} </p>
+            <button onClick={deleteTask}>Delete</button>
+          </div>
         ))}
 
       </div>
