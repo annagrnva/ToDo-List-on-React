@@ -10,13 +10,18 @@ export default function App() {
   }
 
   function addTask() {
-    newTask.slice()
+    const newIndex = task.indexOf(1);
+    if(newIndex > -1) {
+      task.splice(newIndex, 1)
+      }
     setTask([...task, newTask])
     setNewTask("")
   }
 
   function deleteTask(index) {
-    setTask.remove(index)
+   const updateDelete = task.filter((t) => t.index !== index)
+   console.log(updateDelete)
+   setTask(updateDelete)
   }
 
   return (
@@ -39,7 +44,7 @@ export default function App() {
         {task.map((todo, index) => (
           <div key={index}>
             <p> {todo} </p>
-            <button onClick={deleteTask}>Delete</button>
+            <button onClick={() => deleteTask(todo.index)}>Delete</button>
           </div>
         ))}
 
