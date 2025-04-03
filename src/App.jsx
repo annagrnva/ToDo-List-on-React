@@ -10,18 +10,19 @@ export default function App() {
   }
 
   function addTask() {
-    const newIndex = task.indexOf(1);
-    if(newIndex > -1) {
-      task.splice(newIndex, 1)
-      }
-    setTask([...task, newTask])
-    setNewTask("")
+    if (newTask !== "") {
+      setTask([...task, newTask])
+      setNewTask("")
+    }
+
   }
 
-  function deleteTask(index) {
-   const updateDelete = task.filter((t) => t.index !== index)
-   console.log(updateDelete)
-   setTask(updateDelete)
+  function deleteTask(idx) {
+    const reduceToDo = [...task];
+    reduceToDo.splice(idx, 1)
+
+    console.log(reduceToDo)
+    setTask(reduceToDo)
   }
 
   return (
@@ -44,7 +45,7 @@ export default function App() {
         {task.map((todo, index) => (
           <div key={index}>
             <p> {todo} </p>
-            <button onClick={() => deleteTask(todo.index)}>Delete</button>
+            <button onClick={() => deleteTask(index)}>Delete</button>
           </div>
         ))}
 
