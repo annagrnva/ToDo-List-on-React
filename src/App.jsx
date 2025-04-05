@@ -17,11 +17,14 @@ export default function App() {
 
   }
 
+  function editTask() {
+    const editText = [...newTask]
+    console.log(editText)
+  }
+
   function deleteTask(idx) {
     const reduceToDo = [...task];
     reduceToDo.splice(idx, 1)
-
-    console.log(reduceToDo)
     setTask(reduceToDo)
   }
 
@@ -41,10 +44,13 @@ export default function App() {
 
       </div>
 
-      <div>
+      <div >
         {task.map((todo, index) => (
-          <div key={index}>
+          <div
+            className='todo-container'
+            key={index}>
             <p> {todo} </p>
+            <button onClick={() => editTask(index)}>Edit</button>
             <button onClick={() => deleteTask(index)}>Delete</button>
           </div>
         ))}
