@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { ToDoItem } from './components/ToDoItem'
 
 export default function App() {
   const [task, setTask] = useState([])
@@ -17,12 +18,9 @@ export default function App() {
 
   }
 
-  function editTask() {
-    const editText = [...newTask]
-    console.log(editText)
-  }
 
   function deleteTask(idx) {
+
     const reduceToDo = [...task];
     reduceToDo.splice(idx, 1)
     setTask(reduceToDo)
@@ -46,13 +44,13 @@ export default function App() {
 
       <div >
         {task.map((todo, index) => (
-          <div
-            className='todo-container'
-            key={index}>
-            <p> {todo} </p>
-            <button onClick={() => editTask(index)}>Edit</button>
-            <button onClick={() => deleteTask(index)}>Delete</button>
-          </div>
+  
+          <ToDoItem 
+          title={todo} 
+          key={index}
+          delete={deleteTask}
+          index={index}
+         />
         ))}
 
       </div>
